@@ -4,6 +4,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.fail;
 
+import android.os.Build;
 import android.os.Environment;
 import org.junit.Test;
 
@@ -25,7 +26,9 @@ public class StorageDirectoryMapperTest {
     assertEquals(Environment.DIRECTORY_PICTURES, StorageDirectoryMapper.androidType(6));
     assertEquals(Environment.DIRECTORY_MOVIES, StorageDirectoryMapper.androidType(7));
     assertEquals(Environment.DIRECTORY_DOWNLOADS, StorageDirectoryMapper.androidType(8));
-    assertEquals(Environment.DIRECTORY_DCIM, StorageDirectoryMapper.androidType(9));
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+      assertEquals(Environment.DIRECTORY_DCIM, StorageDirectoryMapper.androidType(9));
+    }
   }
 
   @Test
